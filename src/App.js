@@ -6,14 +6,14 @@ function App() {
   const [error, setError] = useState(null);
 
   const fetchCounties = () => {
-    const URL = "https://xcountries-backend.azurewebsites.net/all";
+    const URL = "https://countries-backend.azurewebsites.net/all";
 
     fetch(URL)
       .then((response) => response.json())
       .then((data) => setCountries(data))
       .catch((error) => {
         setError(error.message);
-        console.log(`Error fetching data : ${error.message}`);
+        console.error("Error: ", error);
       });
   };
 
