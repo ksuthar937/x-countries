@@ -13,7 +13,7 @@ function App() {
       .then((data) => setCountries(data))
       .catch((error) => {
         setError(error.message);
-        console.error("Error: ", error);
+        console.error("Error fetching data: ", error);
       });
   };
 
