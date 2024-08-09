@@ -1,24 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from "react";
+import Card from "./components/Card";
 
 function App() {
+  const [counties, setCountries] = useState([]);
+  const [error, setError] = useState(null);
+
+  const fetchCounties = () => {
+    const URL = "https://xcountries-backend.azurewebsites.net/all";
+
+    fetch(URL)
+      .then((response) => response.json())
+      .then((data) => setCountries(data))
+      .catch((error) => {
+        setError(error.message);
+      });
+  };
+
+  useEffect(() => {
+    fetchCounties();
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <main>
+      <h1>XCountries</h1>
+      {error ? (
+        <h2>"☹ Error fetching data : {error}"</h2>
+      ) : (
+        <div className="container">
+          {counties.map((country, index) => (
+            <Card data={country} key={index} />
+          ))}
+        </div>
+      )}
+    </main>
   );
 }
 
