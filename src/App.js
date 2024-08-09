@@ -24,7 +24,7 @@ function App() {
     <main>
       <h1>XCountries</h1>
       {error ? (
-        <h2>"☹ Error fetching data : {error}"</h2>
+        <h2>"Error fetching data : {error}"</h2>
       ) : (
         <div className="container">
           {counties.map((country, index) => (
