@@ -6,7 +6,7 @@ function App() {
   const [error, setError] = useState(null);
 
   const fetchCounties = () => {
-    const URL = "https://countries-backend.azurewebsites.net/all";
+    const URL = "https://xcountries-backend.azurewebsites.net/all";
 
     fetch(URL)
       .then((response) => response.json())
